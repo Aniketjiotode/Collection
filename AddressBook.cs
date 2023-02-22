@@ -45,13 +45,13 @@ namespace AddressBook_System
             Console.WriteLine("Enter Phone Number");
             contact.PhoneNumber = int.Parse(Console.ReadLine());
             contacts.Add(contact);
-            citys.Add(city, name);
-            states.Add(state, name);
+            citys.Add(name, city);
+            states.Add(name, state); ;
             return contact;
         }
         public void Display()
         {
-            Console.WriteLine("Enter 1 to print all data  \nEnter 2 to view persons by state or city");
+            Console.WriteLine("Enter 1 to print all data \nEnter 2 to view persons by state or city\nEnter 3 to get number persons by state or city");
             int input = int.Parse(Console.ReadLine());
             switch (input)
             {
@@ -83,6 +83,7 @@ namespace AddressBook_System
                                 foreach (var c in citys)
                                 {
                                     Console.WriteLine(c);
+                                    return;
                                 }
                             }
                             break;
@@ -96,13 +97,60 @@ namespace AddressBook_System
                                 foreach (var s in states)
                                 {
                                     Console.WriteLine(s);
+                                    return;
                                 }
                             }
                             break;
                     }
                     break;
+                case 3:
+                    Console.WriteLine("Enter 1 to get number of person by city\nEnter 2 to get number of persons by state");
+                    int input3 = int.Parse(Console.ReadLine());
+                    switch (input3)
+                    {
+                        case 1:
+                            Console.WriteLine("Enter the city name");
+                            var city = Console.ReadLine();
+                            int count = 0;
+                            foreach (var c in citys)
+                            {
+                                if (c.Value.Equals(city))
+                                {
+                                    count++;
+                                }
+                            }
+                            if (count == 0)
+                            {
+                                Console.WriteLine($"No person of city {city} is present");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{count} person of city is present in contact");
+                            }
+                            break;
+                        case 2:
+                            Console.WriteLine("Enter the state name");
+                            var state = Console.ReadLine();
+                            int count2 = 0;
+                            foreach (var s in states)
+                            {
+                                if (s.Value.Equals(state))
+                                {
+                                    count2++;
+                                }
+                            }
+                            if (count2 == 0)
+                            {
+                                Console.WriteLine($"No person of city {state} is present");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{count2} person of city is present in contact");
+                            }
+                            break;
+                    }
+                    break;
             }
-
         }
         public void EditContact()
         {
