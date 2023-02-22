@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml.Linq;
 
@@ -80,6 +81,32 @@ namespace AddressBook_System
             Console.WriteLine("Contact Edited successfully");
 
         }
+        public void search()
+        {
+            Console.WriteLine("Enter 1 to search by city \nEnter 2 to search by state");
+            int input = int.Parse(Console.ReadLine());
+            string res="";
+            switch(input)
+            {
+                case 1:
+                    Console.WriteLine("Enter city name");
+                    var city = Console.ReadLine();
+                    res = city;
+                    break;
+                case 2:
+                    Console.WriteLine("Enter state name");
+                    var state = Console.ReadLine();
+                    res= state;
+                    break;
+            }
+            foreach (var contact in contacts)
+            {
+                if (contact.City.Equals(res) || contact.State.Equals(res))
+                    Console.WriteLine("AddressBook Name: " + AddressBook_Name + "\n FirstName: " + contact.FirstName + "\n LastName:" + contact.LastName + "\n Address: " + contact.Address + "\n City: " + contact.City + "\n State: " + contact.State + "\n Email Id" + contact.Email + "\n ZipCode: " + contact.ZipCode + "\n Phone number: " + contact.PhoneNumber);
+                else Console.WriteLine("person search by city or state is not present in contact");
+            }
+
+        }
         public void DeleteContact()
         {
             Console.WriteLine("Enter the FirstName of the contact to Delete");
@@ -100,7 +127,6 @@ namespace AddressBook_System
             {
                  Console.WriteLine($"No contact present of {dname} name");
             }
-
 
         }
     }

@@ -41,7 +41,7 @@ namespace AddressBook_System
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("Enter A to Add new contact\nEnter E to edit a contact\nEnter D to Delete a Contact\nEnter P to print the contacts");
+                Console.WriteLine("Enter A to Add new contact\nEnter E to edit a contact\nEnter D to Delete a Contact\nEnter P to print the contacts\nEnter S to search the contacts");
                 char ch = Console.ReadLine().ToUpper()[0];
                 switch (ch)
                 {
@@ -53,7 +53,7 @@ namespace AddressBook_System
                         }
                         else
                         {
-                            foreach (var c in addressBook.contacts)
+                            foreach (Contact c in addressBook.contacts)
                             {
                                 Console.WriteLine("Enter Name of the person");
                                 var name = Console.ReadLine();
@@ -63,8 +63,8 @@ namespace AddressBook_System
                                     Console.WriteLine($"Entered different name to add contact");
                                     name = Console.ReadLine();
                                 }
-                                addressBook.AddToContact();
                             }
+                                addressBook.AddToContact();
                         }
                         break;
                     case 'E':
@@ -75,6 +75,9 @@ namespace AddressBook_System
                         break;
                     case 'P':
                         addressBook.Display();
+                        break;
+                    case 'S':
+                        addressBook.search();
                         break;
                     default:
                         break;
