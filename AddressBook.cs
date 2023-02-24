@@ -51,7 +51,7 @@ namespace AddressBook_System
         }
         public void Display()
         {
-            Console.WriteLine("Enter 1 to print all data \nEnter 2 to view persons by state or city\nEnter 3 to get number persons by state or city\nEnter 4 to print entry in alphabetical order");
+            Console.WriteLine("Enter 1 to print all data \nEnter 2 to view persons by state or city\nEnter 3 to get number persons by state or city\nEnter 4 to print entry in alphabetical order\nEnter 5 to sort entries by city,state and zipcode");
             int input = int.Parse(Console.ReadLine());
             switch (input)
             {
@@ -159,13 +159,35 @@ namespace AddressBook_System
                     }
                     else
                     {
-                        contacts.Sort((x,y)=>x.FirstName.CompareTo(y.FirstName));
+                         contacts.Sort((x,y)=>x.FirstName.CompareTo(y.FirstName));
                         foreach (var contact in contacts)
                         {
                             Console.WriteLine("AddressBook Name: " + AddressBook_Name + "\n FirstName: " + contact.FirstName + "\n LastName:" + contact.LastName + "\n Address: " + contact.Address + "\n City: " + contact.City + "\n State: " + contact.State + "\n Email Id" + contact.Email + "\n ZipCode: " + contact.ZipCode + "\n Phone number: " + contact.PhoneNumber);
                         }
                     }
                     break;
+                case 5:
+                    if (contacts.Count <= 0)
+                    {
+                        Console.WriteLine("No contacts available");
+                        return;
+                    }
+                    Console.WriteLine("Enter city,state and zipcode to sort entries");
+                    Console.WriteLine("Enter city name");
+                    var Citys = Console.ReadLine();
+                    Console.WriteLine("Enter state name");
+                    var States = Console.ReadLine();
+                    Console.WriteLine("Enter Zipcode name");
+                    var Zipcodes= int.Parse(Console.ReadLine());
+                    foreach (var contact in contacts)
+                    {
+                        if(Citys==contact.City && States==contact.State && Zipcodes==contact.ZipCode )
+                        {
+                            Console.WriteLine("AddressBook Name: " + AddressBook_Name + "\n FirstName: " + contact.FirstName + "\n LastName:" + contact.LastName + "\n Address: " + contact.Address + "\n City: " + contact.City + "\n State: " + contact.State + "\n Email Id" + contact.Email + "\n ZipCode: " + contact.ZipCode + "\n Phone number: " + contact.PhoneNumber);
+                        }
+                    }
+                    break;
+                    
             }
         }
         public void EditContact()
