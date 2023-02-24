@@ -51,7 +51,7 @@ namespace AddressBook_System
         }
         public void Display()
         {
-            Console.WriteLine("Enter 1 to print all data \nEnter 2 to view persons by state or city\nEnter 3 to get number persons by state or city");
+            Console.WriteLine("Enter 1 to print all data \nEnter 2 to view persons by state or city\nEnter 3 to get number persons by state or city\nEnter 4 to print entry in alphabetical order");
             int input = int.Parse(Console.ReadLine());
             switch (input)
             {
@@ -122,6 +122,7 @@ namespace AddressBook_System
                             if (count == 0)
                             {
                                 Console.WriteLine($"No person of city {city} is present");
+                                return;
                             }
                             else
                             {
@@ -146,8 +147,23 @@ namespace AddressBook_System
                             else
                             {
                                 Console.WriteLine($"{count2} person of city is present in contact");
+                                return;
                             }
                             break;
+                    }
+                    break;
+                case 4:
+                    if (contacts.Count <= 0)
+                    {
+                        Console.WriteLine("No contacts available");
+                    }
+                    else
+                    {
+                        contacts.Sort((x,y)=>x.FirstName.CompareTo(y.FirstName));
+                        foreach (var contact in contacts)
+                        {
+                            Console.WriteLine("AddressBook Name: " + AddressBook_Name + "\n FirstName: " + contact.FirstName + "\n LastName:" + contact.LastName + "\n Address: " + contact.Address + "\n City: " + contact.City + "\n State: " + contact.State + "\n Email Id" + contact.Email + "\n ZipCode: " + contact.ZipCode + "\n Phone number: " + contact.PhoneNumber);
+                        }
                     }
                     break;
             }
